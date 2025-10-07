@@ -44,4 +44,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: secret-leak-report
-          path: reports/secret-leaks-check/secret-leaks-check.json
+          path: secret-leaks-check.json
+       
