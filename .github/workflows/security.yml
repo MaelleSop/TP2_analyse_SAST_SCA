@@ -37,15 +37,19 @@ jobs:
 
           
       # SAST : Analyse statique du code Python avec Semgrep
-      - name: Run Semgrep (SAST)
-        uses: returntocorp/semgrep-action@v1
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
         with:
-          config: "p/python"   # Utilise le pack de règles Python officiel
-          output: "reports/semgrep/sast-report.sarif"
-          sarif: true
+          languages: python
+      
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:python"
+          output: reports/codeql
 
       - name: Upload SAST report
         uses: actions/upload-artifact@v4
         with:
           name: sast-report
-          path: reports/semgrep/sast-report.sarif
+          path: reports/codeql
