@@ -41,6 +41,7 @@ jobs:
         
         with: 
           args: --sarif-file-output=snyk.sarif
+          json: true
           
 
       - name: Upload SCA report
