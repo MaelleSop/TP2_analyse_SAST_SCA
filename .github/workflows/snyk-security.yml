@@ -42,10 +42,14 @@ jobs:
         with: 
           args: --sarif-file-output=snyk.sarif
           
-      - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
+
+      - name: Upload SCA report
+        uses: actions/upload-artifact@v4
         with:
-          sarif_file: snyk.sarif
+          name: sca-report
+          path: snyk.sarif
+
+      
 
 
         # Runs Snyk Code (SAST) analysis and uploads result into GitHub.
