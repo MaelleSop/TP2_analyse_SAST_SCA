@@ -2,9 +2,9 @@ name: Security CI 2
 
 on:
   push:
-    branches: [ master ]
+    branches: [ Alex ]
   pull_request:
-    branches: [ master ]
+    branches: [ Alex ]
 
 jobs:
   security-scan:
@@ -35,4 +35,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Gitleaks Action
-        uses: zricethezav/gitleaks-action@master
+        uses: zricethezav/gitleaks-action@Alex
