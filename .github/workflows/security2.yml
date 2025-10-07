@@ -1,0 +1,38 @@
+name: Security CI 2
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+              
+      - name: Run OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: "MyProject"
+          path: "."
+          format: "JSON"
+          out: "reports/dependency-check"
+
+              
+      - name: Upload SCA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: sca-report
+          path: reports/dependency-check/dependency-check-report.json
+      
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Gitleaks Action
+        uses: zricethezav/gitleaks-action@master
