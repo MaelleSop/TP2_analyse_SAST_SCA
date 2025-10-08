@@ -34,15 +34,21 @@ jobs:
       # - name: Checkout
       #   uses: actions/checkout@v2
 
-      - name: Gitleaks Action
-        uses: zricethezav/gitleaks-action@master
-        with:
-          format: "JSON"
-          out: "reports/secret-leaks-check"
+      # - name: Gitleaks Action
+      #   uses: zricethezav/gitleaks-action@master
+      #   with:
+      #     format: "JSON"
+      #     out: "reports/secret-leaks-check"
         
-      - name: Upload secret leak report
-        uses: actions/upload-artifact@v4
+      # - name: Upload secret leak report
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: secret-leak-report
+      #     path: reports/secret-leaks-check/secret-leaks-check.json
+      
+      - uses: actions/checkout@v4
         with:
-          name: secret-leak-report
-          path: secret-leaks-check.json
-       
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
