@@ -1,5 +1,5 @@
 
-name: Snyk Security
+name: Security
 
 on:
   push:
