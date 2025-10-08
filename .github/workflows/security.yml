@@ -54,7 +54,15 @@ jobs:
           name: sast-report
           path: snyk-code.sarif
 
-        # Scanning for secret leaks with Git Leaks
+  gitleaks:
+    name: Secret Scanning (GitLeaks)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4 
+
+      # Scanning for secret leaks with Git Leaks
       - name: Run GitLeaks secret scan
         uses: gitleaks/gitleaks-action@v2
         env:
