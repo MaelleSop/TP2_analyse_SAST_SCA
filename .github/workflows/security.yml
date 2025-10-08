@@ -138,10 +138,3 @@ jobs:
           name: DAST_report_html
           path: zap_report.html
           retention-days: 30
-        
-      - name: 📩 Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: DAST_report_json
-          path: zap_report.json
-          retention-days: 30
