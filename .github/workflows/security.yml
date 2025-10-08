@@ -94,8 +94,16 @@ jobs:
         run: |
           wget https://github.com/zaproxy/zaproxy/releases/download/v2.15.0/ZAP_2.15.0_Linux.tar.gz
           tar -xvf ZAP_2.15.0_Linux.tar.gz
-          ./ZAP_2.15.0/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true &
 
+          ls -l ZAP_2.15.0
+          ./ZAP_2.15.0/zap.sh -version
+
+          ./ZAP_2.15.0/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true &
+          sleep 20
+          
+          pwd
+          ls -l
+          
       - name: 📦 Install NVM
         run: |
           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
