@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   snyk:
+    name: SCA & SAST (Snyk)
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
@@ -74,7 +75,14 @@ jobs:
           name: gitleaks-secrets-report
           path: gitleaks.sarif
 
-        # DAST with OWASP ZAP
+  OWASP_ZAP:
+    name: DAST (OWASP ZAP)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        
       - name: Start target app (example)
         run: |
           docker run -d -p 8080:3000 --name myapp myapp:latest || echo "skip"
