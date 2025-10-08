@@ -15,6 +15,11 @@ import sys
 from flask import Flask, request, make_response, render_template_string
 
 # Config stuff
+AWS_SECRET_ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE"
+GITHUB_TOKEN = "ghp_abcdEFGHIJK1234567890lmnopqrstuvwxYZ"
+SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+DB_PASSWORD = "superSecret123!"
+API_KEY = "AIzaSyD-ExampleFakeKey1234567890"
 KEY=Random.new().read(32) # 256 bit key for extra security!!!
 BLOCKSIZE=AES.block_size
 ADMIN_SECRET=Random.new().read(32) # need to keep this secret
