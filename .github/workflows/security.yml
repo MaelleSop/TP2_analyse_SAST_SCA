@@ -24,12 +24,6 @@ jobs:
         # In this case we want to upload the SAST issues to GitHub Code Scanning
         uses: snyk/actions/setup@806182742461562b67788a64410098c9d9b96adb
 
-        # For Snyk Open Source you must first set up the development environment for your application's dependencies
-        # For example for Node
-        #- uses: actions/setup-node@v4
-        #  with:
-        #    node-version: 20
-
         # Runs Snyk Open Source (SCA) analysis and uploads result to Snyk.
       - name: Set up env 
         uses: snyk/actions/python-3.12@master 
@@ -41,8 +35,6 @@ jobs:
         
         with: 
           args: --sarif-file-output=snyk.sarif
-          json: true
-          
 
       - name: Upload SCA report
         uses: actions/upload-artifact@v4
