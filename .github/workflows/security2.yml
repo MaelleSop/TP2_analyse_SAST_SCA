@@ -61,15 +61,24 @@ jobs:
           name: sast-report
           path: snyk-code.sarif
 
-      
-      
+        # Scanning for secret leaks with Git Leaks 
+      # - name: Secret leaks scanning
+      #   uses: actions/checkout@v4
+      #   with:
+      #     fetch-depth: 0
+      # - uses: gitleaks/gitleaks-action@v2
+      #   env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
-
-      - name: Secret leaks scanning
-        uses: actions/checkout@v4
+      - name: Run GitLeaks secret scan
+        uses: gitleaks/gitleaks-action@v2
         with:
-          fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
+          args: detect --source . --report-format sarif --report-path gitleaks.sarif
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload GitLeaks report
+        uses: actions/upload-artifact@v4
+        with:
+          name: gitleaks-secrets-report
+          path: gitleaks.sarif
