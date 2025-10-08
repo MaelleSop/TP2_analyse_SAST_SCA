@@ -73,3 +73,22 @@ jobs:
         with:
           name: gitleaks-secrets-report
           path: gitleaks.sarif
+
+        # DAST with OWASP ZAP
+      - name: Start target app (example)
+        run: |
+          docker run -d -p 8080:3000 --name myapp myapp:latest || echo "skip"
+          sleep 10
+
+      - name: Run OWASP ZAP baseline DAST scan
+        uses: zaproxy/action-baseline@v0.9.0
+        with:
+          target: 'http://localhost:8080'
+          cmd_options: '-t 300'  # 5 minutes max scan time
+        continue-on-error: true
+
+      - name: Upload ZAP DAST report
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-dast-report
+          path: report_html.html
