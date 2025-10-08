@@ -14,9 +14,9 @@ jobs:
   snyk:
     name: SCA & SAST (Snyk)
     permissions:
-      contents: read # for actions/checkout to fetch code
-      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
-      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+      contents: read
+      security-events: write
+      actions: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -136,7 +136,7 @@ jobs:
 
       - name: 📋 Installing requirements
         run: |
-          pip install -r ./scripts/requirements.txt
+          pip install -r requirements.txt
 
       - name: ⚡️ Running AutoZap
         run: |
