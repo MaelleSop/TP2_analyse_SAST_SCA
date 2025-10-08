@@ -96,17 +96,17 @@ jobs:
               sleep 2
             fi
           done
-
+        # Running ZAP
       - name: Run ZAP Baseline (JSON output)
         uses: zaproxy/action-baseline@v0.14.0
         with:
           target: "http://localhost:4000"
           token: ${{ secrets.GITHUB_TOKEN }}
           fail_action: false
-          cmd_options: "-J zap_report.json"  # Génère zap_report.json à la racine du workspace
+          cmd_options: "-J dast_report.json"
 
       - name: Upload ZAP JSON report
         uses: actions/upload-artifact@v4
         with:
-          name: zap_report_json
-          path: zap_report.json
+          name: dast_report_json
+          path: dast_report.json
