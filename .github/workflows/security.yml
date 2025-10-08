@@ -140,7 +140,7 @@ jobs:
 
       - name: ⚡️ Running AutoZap
         run: |
-          python3 -u ./scripts/auto_zap.py
+          python3 -u auto_zap.py
           
       - name: 📩 Upload Artifact
         uses: actions/upload-artifact@v4
