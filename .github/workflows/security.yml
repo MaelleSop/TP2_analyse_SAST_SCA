@@ -15,6 +15,8 @@ jobs:
     name: SCA & SAST (Snyk)
     permissions:
       security-events: write
+      contents: read
+      actions: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
